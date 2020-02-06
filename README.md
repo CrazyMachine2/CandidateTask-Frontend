@@ -1,1 +1,1 @@
-# Candidate Task for QUAJOO
+# Candidate Task for QUAJOO - Frontend (Angular)
