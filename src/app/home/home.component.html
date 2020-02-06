@@ -1,0 +1,25 @@
+<div class="container text-center mt-5 mb-2 weather-forecast">
+    <h1>Weather Forecast</h1>
+</div>
+
+<div class="container text-center">
+    <app-city-react-form ></app-city-react-form>
+    <button name="refresh" class="btn btn-success active btn-lg" (click)="update()">Refresh Weather</button>
+</div>
+
+
+
+<div class="container">
+    <div class="weather-wrapper">
+        <div class="weather-card" *ngFor="let city of cities">
+            <h1 class="celsius">{{ city.temp_celsius + '°C'}}</h1>
+            <h1 class="fahrenheit">{{ city.temp_fahrenheit + '°F'}}</h1>
+            <p class="text-center">{{ city.name }}</p>
+        </div>
+    </div>
+</div>
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="white" type="ball-spin" [fullScreen]="true">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>

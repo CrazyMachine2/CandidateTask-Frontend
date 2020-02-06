@@ -1,0 +1,23 @@
+<form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="cityName">Add city</label>
+        <input type="text" class="form-control" formControlName="cityName" required uniqueCityNameValidator cityExistValidator>
+    </div>
+
+    <div *ngIf="cityFormControls.cityName.invalid && (cityFormControls.cityName.touched)" class="alert alert-danger">
+
+        <div *ngIf="cityFormControls.cityName.errors.uniqueCityNameValidator">
+            City already exist !
+        </div>
+
+        <div *ngIf="cityFormControls.cityName.errors.required">
+            City name is required !
+        </div>
+
+        <div *ngIf="cityFormControls.cityName.errors.cityExistValidator">
+            City doesn't exist !
+        </div>
+    </div>
+    <!-- <button type="button" class="btn btn-primary btn-lg"  (click)="newCity(); cityForm.reset()" >Add City</button> -->
+    <button type="submit" class="btn btn-primary btn-lg" [disabled]="!cityForm.valid">Add city</button>
+</form>
