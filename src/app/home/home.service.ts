@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { City } from './city';
 import { Observable } from 'rxjs';
+import { CityName } from './cityName';
 
 
 @Injectable({
@@ -17,8 +18,8 @@ export class HomeService {
     return this.http.get<City[]>(`${this.url}/api/cities`)
   }
 
-  addCity(city: City) {
-    return this.http.post<City>(`${this.url}/api/city`,city);
+  addCity(city: CityName) {
+    return this.http.post<CityName>(`${this.url}/api/city`,city);
   }
 
   refresh(): Observable<{}>{

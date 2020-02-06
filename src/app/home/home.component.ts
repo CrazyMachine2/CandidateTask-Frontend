@@ -1,6 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { HomeService } from './home.service';
 import { City } from './city'
+import { CityName } from './cityName'
 import { NgxSpinnerService, NgxSpinnerModule } from "ngx-spinner";
 import { CommonModule } from '@angular/common';
 
@@ -28,8 +29,8 @@ export class HomeComponent implements OnInit {
 
   getCities(): void {
     this.spinnerService.show();
-    this.homeService.getCities().subscribe(data => {
-      this.cities = data
+    this.homeService.getCities().subscribe(cities => {
+      this.cities = cities
       this.spinnerService.hide();
     });
   }
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
   addCity(cityName: string): void {
     cityName = cityName.trim();
 
-    const newCity = new City(cityName);
+    const newCity = new CityName(cityName);
     this.spinnerService.show();
     this.homeService.addCity(newCity).subscribe(() => {
       this.getCities()
