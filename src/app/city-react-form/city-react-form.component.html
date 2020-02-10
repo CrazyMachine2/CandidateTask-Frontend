@@ -1,7 +1,7 @@
 <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="cityName">Add city</label>
-        <input type="text" class="form-control" formControlName="cityName" required uniqueCityNameValidator cityExistValidator>
+        <input type="text" class="form-control" formControlName="cityName" placeholder="Example: Hamburg" required uniqueCityNameValidator cityExistValidator>
     </div>
 
     <div *ngIf="cityFormControls.cityName.invalid && (cityFormControls.cityName.touched)" class="alert alert-danger">
