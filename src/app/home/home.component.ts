@@ -2,20 +2,13 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { HomeService } from './home.service';
 import { City } from './city'
 import { CityName } from './cityName'
-import { NgxSpinnerService, NgxSpinnerModule } from "ngx-spinner";
-import { CommonModule } from '@angular/common';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
-})
-
-@NgModule({
-  imports: [
-    CommonModule,
-    NgxSpinnerModule,
-  ]
 })
 
 export class HomeComponent implements OnInit {
