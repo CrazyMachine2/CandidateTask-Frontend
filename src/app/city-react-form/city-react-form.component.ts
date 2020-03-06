@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup , FormControl, FormBuilder, Validators } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { HomeComponent } from '../home/home.component';
 import { uniqueNameValidator } from '../shared/unique-city-name-validator.directive'
 import { HomeService } from '../home/home.service';
@@ -20,7 +20,7 @@ export class CityReactFormComponent implements OnInit {
 
   createForm(){
     this.cityForm = this.fb.group({
-      cityName:['', Validators.required, uniqueNameValidator(this.homeService)]
+      cityName:['', [Validators.required], [uniqueNameValidator(this.homeService)]]
     });
   }
 
