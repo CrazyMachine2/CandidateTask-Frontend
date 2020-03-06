@@ -1,32 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { City } from './city';
 import { Observable } from 'rxjs';
-import { CityName } from './cityName';
-
+import { ICityAdd } from '../shared/interfaces/city-add';
+import { ICity } from '../shared/interfaces/city';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class HomeService {
-  private url: string = 'http://localhost:5000'
 
   constructor(private http: HttpClient) { }
 
-  getCities(): Observable<City[]> {
-    return this.http.get<City[]>(`${this.url}/api/cities`)
+  getCities(): Observable<ICity[]> {
+    return this.http.get<ICity[]>(`${environment.apiServer}/api/cities`)
   }
 
-  addCity(city: CityName) {
-    return this.http.post<CityName>(`${this.url}/api/city`,city);
+  addCity(city: ICityAdd) {
+    return this.http.post<ICityAdd>(`${environment.apiServer}/api/city`,city);
   }
 
   refresh(): Observable<{}>{
-    return this.http.put(`${this.url}/api/update`,'');
+    return this.http.put(`${environment.apiServer}/api/update`,'');
   }
 
-  getCityByName(name: string): Observable<City[]> {
-    return this.http.get<City[]>(`${this.url}/api/unique-name?name=${name}`);
+  getCityByName(name: string): Observable<ICity[]> {
+    return this.http.get<ICity[]>(`${environment.apiServer}/api/unique-name?name=${name}`);
   }
 }

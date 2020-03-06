@@ -1,15 +1,23 @@
 import { AsyncValidator, AbstractControl, ValidationErrors, NG_ASYNC_VALIDATORS, AsyncValidatorFn } from '@angular/forms';
 import { HomeService } from '../home/home.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { Observable, of, timer } from 'rxjs';
+import { map,switchMap, debounceTime } from 'rxjs/operators'
+
 import { Directive } from '@angular/core';
 
 
 export function uniqueNameValidator(homeService: HomeService): AsyncValidatorFn {
     return (c: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-        return homeService.getCityByName(c.value).pipe(
-            map(cities => {
-                return cities && cities.length > 0 ? { 'uniqueCityNameValidator': true } : null;
+        return timer(300).pipe(
+            switchMap(() => {
+                if(!c.value){
+                    return of(null)
+                }
+                return homeService.getCityByName(c.value).pipe(
+                    map(cities => {
+                        return cities && cities.length > 0 ? { 'uniqueCityNameValidator': true } : null;
+                    })
+                );
             })
         );
     }

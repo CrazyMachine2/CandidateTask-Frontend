@@ -18,18 +18,18 @@ export class CityReactFormComponent implements OnInit {
     this.createForm();
   }
 
-  createForm(){
+  createForm() {
     this.cityForm = this.fb.group({
-      cityName:['', [Validators.required], [uniqueNameValidator(this.homeService)]]
+      cityName: ['', [Validators.required], [uniqueNameValidator(this.homeService)],  { updateOn: blur }]
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     this.homeComponent.addCity(this.cityName);
     this.cityForm.reset();
   }
 
-  get cityName(){
+  get cityName() {
     return this.cityForm.value['cityName'];
   }
 
