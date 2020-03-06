@@ -28,12 +28,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  addCity(cityName: string): void {
-    cityName = cityName.trim();
-
-    const newCity: ICityAdd = { name: cityName } ;
+  addCity(city: ICityAdd): void {
     this.spinnerService.show();
-    this.homeService.addCity(newCity).subscribe(() => {
+    this.homeService.addCity(city).subscribe(() => {
       this.getCities()
       this.spinnerService.hide();
     });
