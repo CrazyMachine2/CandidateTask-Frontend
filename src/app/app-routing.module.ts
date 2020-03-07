@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { CityListComponent } from './feautures/city/city-list/city-list.component';
 
 const routes: Routes = [
-  { path:'', component: HomeComponent},
+  { path:'',  pathMatch: 'full', component: CityListComponent },
 ];
 
 @NgModule({

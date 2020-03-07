@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CityReactFormComponent } from './city-react-form.component';
+import { CityFormComponent } from './city-form.component';
 
-describe('CityReactFormComponent', () => {
-  let component: CityReactFormComponent;
-  let fixture: ComponentFixture<CityReactFormComponent>;
+describe('CityFormComponent', () => {
+  let component: CityFormComponent;
+  let fixture: ComponentFixture<CityFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CityReactFormComponent ]
+      declarations: [ CityFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CityReactFormComponent);
+    fixture = TestBed.createComponent(CityFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

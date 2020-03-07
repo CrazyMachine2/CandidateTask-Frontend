@@ -1,19 +1,19 @@
 import { AsyncValidator, AbstractControl, ValidationErrors, NG_ASYNC_VALIDATORS, AsyncValidatorFn } from '@angular/forms';
-import { HomeService } from '../home/home.service';
+import { CityService } from '../../core/services/city.service';
 import { Observable, of, timer } from 'rxjs';
-import { map,switchMap, debounceTime } from 'rxjs/operators'
+import { map,switchMap } from 'rxjs/operators'
 
 import { Directive } from '@angular/core';
 
 
-export function uniqueNameValidator(homeService: HomeService): AsyncValidatorFn {
+export function uniqueNameValidator(cityService: CityService): AsyncValidatorFn {
     return (c: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
         return timer(300).pipe(
             switchMap(() => {
                 if(!c.value){
                     return of(null)
                 }
-                return homeService.getCityByName(c.value).pipe(
+                return cityService.getCityByName(c.value).pipe(
                     map(cities => {
                         return cities && cities.length > 0 ? { 'uniqueCityNameValidator': true } : null;
                     })
@@ -30,10 +30,10 @@ export function uniqueNameValidator(homeService: HomeService): AsyncValidatorFn 
 
 export class UniqueCityNameDirective implements AsyncValidator {
 
-    constructor(private homeService: HomeService) { }
+    constructor(private cityService: CityService) { }
 
     validate(c: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-        return this.homeService.getCityByName(c.value).pipe(
+        return this.cityService.getCityByName(c.value).pipe(
             map(cities => {
                 return cities && cities.length > 0 ? { 'uniqueCityNameValidator': true } : null;
             })
