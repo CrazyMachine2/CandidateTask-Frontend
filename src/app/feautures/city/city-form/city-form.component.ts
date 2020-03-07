@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { uniqueNameValidator } from 'src/app/shared/validators/unique-city-name-validator.directive';
 import { ICityAdd } from 'src/app/shared/interfaces/city-add';
 import { CityService } from 'src/app/core/services/city.service';
@@ -20,13 +20,13 @@ export class CityFormComponent implements OnInit {
     this.createForm();
   }
 
-  createForm() {
+  createForm(): void {
     this.cityForm = this.fb.group({
       cityName: ['', [Validators.required], [uniqueNameValidator(this.cityService)],  { updateOn: blur }]
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const city: ICityAdd = { name: this.cityName.trim() }; 
     this.addCity.emit(city);
     this.cityForm.reset();
@@ -36,7 +36,7 @@ export class CityFormComponent implements OnInit {
     return this.cityForm.value['cityName'];
   }
 
-  get cityFormControls() {
+  get cityFormControls(): { [key: string]: AbstractControl } {
     return this.cityForm['controls'];
   }
 
