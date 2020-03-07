@@ -24,7 +24,7 @@ export class CityService {
     return this.http.put(`${environment.apiServer}/api/update`,'');
   }
 
-  getCityByName(name: string): Observable<ICity[]> {
-    return this.http.get<ICity[]>(`${environment.apiServer}/api/unique-name?name=${name}`);
+  getCityByName(name: string): Observable<ICity> {
+    return this.http.get<ICity>(`${environment.apiServer}/api/unique-name?name=${name}`);
   }
 }
