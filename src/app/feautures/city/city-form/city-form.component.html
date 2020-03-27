@@ -13,10 +13,6 @@
         <div *ngIf="cityFormControls.cityName.errors.required">
             City name is required !
         </div>
-
-        <div *ngIf="cityFormControls.cityName.errors.cityExistValidator">
-            City doesn't exist !
-        </div>
     </div>
     
     <button type="submit" class="btn btn-primary btn-lg" [disabled]="!cityForm.valid">Add city</button>
